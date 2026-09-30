@@ -52,14 +52,14 @@ export function Insurance() {
         <SectionHead
           tone="paper"
           index="05"
-          kicker="Insurance partners"
+          kicker="Insurance demonstration"
           title={
             <>
-              Use your supported insurance cover with{' '}
+              Explore insurance access with{' '}
               <span className="editorial text-brass">RiskSense</span>.
             </>
           }
-          lede="These are the providers selectable during registration and access verification. The list is data-driven: providers can be added, disabled or reordered without redesigning this page."
+          lede="These provider names illustrate the simulated insurance route. They are examples only; enter your provider name in the access request."
         />
 
         {/* Prototype honesty banner — §6 */}
@@ -163,9 +163,9 @@ export function Insurance() {
 
             <ul className="mt-5 space-y-2.5">
               {[
-                'Select this provider during registration.',
-                'Enter your policy or membership details on the secure activation step.',
-                'RiskSense verifies eligibility with the backend before access is activated.',
+                'These names are illustrative only; enter your insurer name in the request.',
+                'Add policy or member details only if you have them.',
+                'The request remains pending until authorized backend demonstration verification.',
               ].map((line, i) => (
                 <li key={line} className="flex gap-3.5 text-[0.88rem] leading-[1.55] text-paper/62">
                   <span className="micro-sm mt-0.5 shrink-0 text-brass/60">

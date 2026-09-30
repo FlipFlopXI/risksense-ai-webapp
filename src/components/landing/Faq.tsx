@@ -89,7 +89,7 @@ export function Faq() {
                 </p>
               ))}
 
-              <a
+              {SUPPORT_EMAIL ? <a
                 href={contact.cta!.href}
                 className="group mt-8 flex items-center justify-between gap-4 bg-graphite px-6 py-5 text-paper transition-colors duration-500 hover:bg-brass hover:text-ink"
               >
@@ -113,7 +113,7 @@ export function Faq() {
                     strokeLinejoin="round"
                   />
                 </svg>
-              </a>
+              </a> : <p className="mt-6 text-sm text-graphite/60">A contact email will be added when the project address is configured.</p>}
 
               <p className="mt-5 micro-sm leading-[1.85] text-graphite/38">
                 Opens your own email application with the subject pre-filled. Never include medical

@@ -1,5 +1,5 @@
 /**
- * Supported insurance providers.
+ * Demonstration insurance provider examples.
  *
  * PROTOTYPE RULE (spec §6): only providers genuinely configured and approved in the
  * backend may be presented as real RiskSense partners. Every entry below is
@@ -33,4 +33,4 @@ export const INSURERS: Insurer[] = [
 ];
 
 export const INSURER_NOTE =
-  'Eligibility is confirmed during registration. No member or policy information is displayed on the public site.';
+  'These are examples, not partners. Eligibility is not confirmed when the website submits a request.';

@@ -33,8 +33,8 @@
   --color-risk: #b33a28;
 
   /* Type */
-  --font-display: var(--font-bodoni), ui-serif, Georgia, 'Times New Roman', serif;
-  --font-sans: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
+  --font-display: Georgia, 'Times New Roman', ui-serif, serif;
+  --font-sans: 'Segoe UI', ui-sans-serif, system-ui, sans-serif;
 
   /* Motion — long, eased, cinematic */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);

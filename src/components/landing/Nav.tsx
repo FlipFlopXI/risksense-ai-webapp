@@ -84,11 +84,11 @@ export function Nav() {
 
           {/* Action */}
           <Link
-            href="/world"
+            href="/register/complete"
             className="justify-self-end border border-paper/25 px-4 py-2.5 micro text-paper transition-colors duration-400 hover:border-brass hover:bg-brass hover:text-ink sm:px-6"
           >
-            <span className="hidden sm:inline">Enter the district</span>
-            <span className="sm:hidden">Enter</span>
+            <span className="hidden sm:inline">Complete Registration</span>
+            <span className="sm:hidden">Register</span>
           </Link>
         </nav>
       </header>

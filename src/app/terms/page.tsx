@@ -50,7 +50,7 @@ export default function TermsPage() {
         {
           heading: 'Payment and insurance',
           paragraphs: [
-            'In this academic prototype the payment gateway is a demonstration environment. No real payment is processed, no card details are stored, and insurance verification is simulated until a real insurer integration exists.',
+            'When demonstration activation is enabled, FastAPI can activate a demo subscription or simulated insurance access after validating the patient and clinician. No real payment or external insurer verification occurs, and no card details are requested.',
             'The insurers presented are demonstration data. Their appearance does not imply any commercial partnership, endorsement or coverage arrangement.',
           ],
         },

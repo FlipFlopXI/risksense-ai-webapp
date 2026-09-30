@@ -1,24 +1,8 @@
 import type { Metadata, Viewport } from 'next';
-import { Bodoni_Moda, Jost } from 'next/font/google';
 import './globals.css';
 
-/** The marque voice: a Didone, for headlines and one italic phrase per view. */
-const bodoni = Bodoni_Moda({
-  subsets: ['latin'],
-  style: ['normal', 'italic'],
-  variable: '--font-bodoni',
-  display: 'swap',
-});
-
-/** Everything with a job: geometric, light, and wide-tracked in its caps. */
-const jost = Jost({
-  subsets: ['latin'],
-  variable: '--font-jost',
-  display: 'swap',
-});
-
 export const metadata: Metadata = {
-  metadataBase: new URL('https://risksense-ai.vercel.app'),
+  ...(process.env.NEXT_PUBLIC_SITE_URL ? { metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL) } : {}),
   title: {
     default: 'RiskSense AI — Know your risk before it becomes your reality',
     template: '%s — RiskSense AI',
@@ -39,6 +23,7 @@ export const metadata: Metadata = {
       'Decision-support risk estimates for heart disease and diabetes, connected to your clinician. Enter the RiskSense District.',
     type: 'website',
   },
+  applicationName: 'RiskSense AI',
   robots: { index: true, follow: true },
 };
 
@@ -52,10 +37,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={`${bodoni.variable} ${jost.variable}`}
-    >
+    <html lang="en">
       <body className="antialiased">{children}</body>
     </html>
   );

@@ -12,29 +12,29 @@ export default function PrivacyPage() {
     <LegalPage
       kicker="Privacy notice"
       title="What this website touches, and what it never does."
-      standfirst="The RiskSense website has a narrow job: inform, show supported insurers, and complete access activation. It is deliberately not a second patient dashboard, and it holds far less about you than you might expect."
+      standfirst="The RiskSense website provides public information and submits patient access requests to the FastAPI backend. It does not activate access by itself."
       updated="17 September 2026"
       sections={[
         {
           heading: 'The short version',
           list: [
             'Health data — vitals, laboratory values, risk analyses and prediction history — lives in the mobile application and the backend, not on this website.',
-            'Card numbers and CVV are never persisted by RiskSense. In this prototype no real payment is processed at all.',
-            'Insurance member details are masked wherever they are displayed back to you.',
+            'The website does not request card numbers or CVV. No real payment is processed.',
+            'Insurance member details are submitted to the backend and are not repeated on the review screen.',
             'The public pages do not require an account and do not ask for health information.',
           ],
         },
         {
           heading: 'Information handled during access activation',
           paragraphs: [
-            'When the mobile application hands you to this website, it uses a short-lived secure registration token. Sensitive patient information is not placed in the URL.',
+            'The mobile app can obtain a one-time activation link from FastAPI. The website exchanges its short-lived token and removes it from the displayed URL. Direct visitors may sign in to initiate the same flow. No patient database ID is placed in the URL.',
             'To complete activation the website handles your chosen access method, the insurance provider and membership details you supply if you choose that route, and the RiskSense Clinician ID you enter. These are passed to the RiskSense backend, which is the authoritative record.',
           ],
         },
         {
           heading: 'Payment information',
           paragraphs: [
-            'The subscription step in this prototype uses a demonstration payment gateway. No real payment is processed. The card fields exist to demonstrate the interface, the form accepts only a published test card, and the card number and CVV are discarded as soon as the demo completes. Only the last four digits are shown back to you on the review step.',
+            'In configured demo mode, FastAPI activates a demonstration subscription without a real transaction. This website does not request card details.',
           ],
         },
         {
@@ -57,6 +57,7 @@ export default function PrivacyPage() {
             'Zero-trust principles: every protected request is authenticated and authorised at the backend regardless of where it came from.',
             'Role-based access control separating patient, clinician and administrator permissions.',
             'Secure authenticated sessions with backend authorisation.',
+            'A short-lived, activation-only credential is held in this browser tab session so a refresh can resume the flow. It cannot authorize health-record APIs.',
             'Audit logging for sensitive system activity.',
             'Infrastructure secrets, database configuration and internal security keys are never exposed on the public website.',
           ],

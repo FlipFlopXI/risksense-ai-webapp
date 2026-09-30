@@ -17,7 +17,7 @@ const COLUMNS = [
     links: [
       { label: 'How It Works', href: '/overview#journey' },
       { label: 'Risk Analysis', href: '/overview#analysis' },
-      { label: 'Insurance Partners', href: '/overview#insurance' },
+      { label: 'Insurance / Access', href: '/overview#insurance' },
       { label: 'Security', href: '/overview#security' },
     ],
   },
@@ -25,7 +25,7 @@ const COLUMNS = [
     title: 'Support',
     links: [
       { label: 'FAQ', href: '/overview#faq' },
-      { label: 'Contact', href: `mailto:${SUPPORT_EMAIL}?subject=RiskSense%20AI%20support%20request` },
+      { label: 'Contact', href: SUPPORT_EMAIL ? `mailto:${SUPPORT_EMAIL}?subject=RiskSense%20AI%20support%20request` : '/overview#contact' },
     ],
   },
   {

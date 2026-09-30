@@ -11,6 +11,8 @@ import { Trust } from '@/components/landing/Trust';
 import { Door } from '@/components/landing/Door';
 import { Faq } from '@/components/landing/Faq';
 import { Footer } from '@/components/landing/Footer';
+import { CompleteRegistration } from '@/components/landing/CompleteRegistration';
+import { DrugAssistant } from '@/components/landing/DrugAssistant';
 
 export default function HomePage() {
   return (
@@ -19,11 +21,13 @@ export default function HomePage() {
       <Nav />
       <main id="main">
         <Hero />
+        <CompleteRegistration />
         <Marquee />
         <Stats />
         <Problem />
         <Journey />
         <Analysis />
+        <DrugAssistant />
         <Insurance />
         <Trust />
         <Door />

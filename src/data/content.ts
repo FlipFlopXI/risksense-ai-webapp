@@ -32,7 +32,7 @@ export type InfoNode = {
   cta?: { label: string; href: string };
 };
 
-export const SUPPORT_EMAIL = 'support@risksense.ai';
+export const SUPPORT_EMAIL = process.env.NEXT_PUBLIC_SUPPORT_EMAIL || '';
 
 export const HERO = {
   eyebrow: 'Decision-support risk intelligence',
@@ -91,7 +91,8 @@ export const NAV = [
   { label: 'Home', href: '/' },
   { label: 'How It Works', href: '/overview#journey' },
   { label: 'Risk Analysis', href: '/overview#analysis' },
-  { label: 'Insurance Partners', href: '/overview#insurance' },
+  { label: 'Insurance / Access', href: '/overview#insurance' },
+  { label: 'Drug Assistant', href: '/#assistant' },
   { label: 'Security', href: '/overview#security' },
   { label: 'FAQ', href: '/overview#faq' },
   { label: 'Contact', href: '/overview#contact' },
@@ -161,7 +162,7 @@ export const NODES: InfoNode[] = [
     accent: 'azure',
     position: [-33.6, 0, -31.5],
     body: [
-      'The patient chooses a RiskSense subscription or a supported insurance provider, completes verification and activates the service. Full patient access is granted only once the clinician connection and access activation are both complete.',
+      'The patient chooses a demonstration subscription or simulated insurance route and submits a request. Authorized backend verification is required before access and clinician linkage become active.',
     ],
   },
   {
@@ -337,14 +338,14 @@ export const NODES: InfoNode[] = [
   {
     id: 'insurance',
     district: 'Insurance Pavilion',
-    label: 'Insurance Partners',
-    title: 'Use your supported insurance cover with RiskSense',
+    label: 'Insurance Access Demo',
+    title: 'Explore simulated insurance access',
     kicker: 'Insurance Pavilion',
     accent: 'plum',
     position: [26.6, 0, 1.6],
     body: [
-      'Patients can activate RiskSense access through a supported insurance provider instead of a subscription. The kiosks around this pavilion show which providers can be selected during registration and access verification.',
-      'The provider list is data-driven: providers can be added, disabled or reordered in the backend without redesigning anything. Selecting a provider explains how eligibility works. It never exposes member information.',
+      'Patients may submit an insurance access request instead of a subscription request. The kiosks show demonstration providers only; they are not confirmed RiskSense partners.',
+      'In the explicit demo mode, FastAPI atomically checks the selected access method and approved clinician before marking entitlement active. No external insurer is contacted.',
     ],
     footnote:
       'Every provider shown in this prototype is demonstration data, clearly labelled as such. No commercial partnership is implied. Insurance verification is simulated until a real insurer integration exists.',
@@ -427,12 +428,12 @@ export const NODES: InfoNode[] = [
     position: [47, 0, 12.4],
     body: [
       'Registration begins in the mobile application. After the account and basic profile stage, the app redirects the patient to this website to complete access setup.',
-      'The handoff uses a short-lived secure registration token. Sensitive patient information is never placed in the URL. After activation the website returns the patient to the app through a deep link, and the app re-checks entitlement with the backend rather than trusting the browser screen.',
+      'The authenticated mobile app requests a 15-minute one-time activation link from FastAPI. The website exchanges it for a scoped credential, removes the token from the URL, and FastAPI alone activates entitlement. On return, Flutter re-checks access status with the backend.',
     ],
     bullets: [
       {
         label: 'Sequence',
-        text: 'Mobile registration → website welcome → access method → subscription or insurance → clinician verification → review → activate → return to app.',
+        text: 'Mobile registration → one-time website handoff → access method → clinician lookup → review → FastAPI demo activation → mobile status refresh.',
       },
     ],
   },
@@ -500,16 +501,16 @@ export const NODES: InfoNode[] = [
     accent: 'jade',
     position: [-45, 0, 11.6],
     body: [
-      'Support opens in your own email application with the subject already filled in.',
+      'A project contact address can be configured for a mailto support action.',
       'Please do not include medical details, identifiers or test results in a support email. RiskSense never asks for them there.',
     ],
-    cta: {
+    cta: SUPPORT_EMAIL ? {
       label: 'Email ' + SUPPORT_EMAIL,
       href:
         'mailto:' +
         SUPPORT_EMAIL +
         '?subject=RiskSense%20AI%20support%20request&body=Please%20describe%20your%20question.%20Do%20not%20include%20medical%20or%20personal%20health%20information.',
-    },
+    } : undefined,
   },
 
   /* --- Activation terminal : section 8 ---------------------------------- */
@@ -523,7 +524,7 @@ export const NODES: InfoNode[] = [
     position: [-20, 0, 0],
     body: [
       'This is where a patient arriving from the mobile application finishes registration: choose subscription or insurance, verify the clinician, review and activate.',
-      'The demonstration runs the whole flow end to end with a clearly-labelled demo payment gateway. No real payment is processed and no card data is stored.',
+      'The website requests explicit demo activation through FastAPI. The backend checks the patient and approved clinician, creates an active entitlement atomically, and returns the authoritative result. No payment or external insurance check occurs.',
     ],
     cta: { label: 'Open the activation flow', href: '/register/complete' },
   },

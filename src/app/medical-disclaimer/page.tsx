@@ -61,7 +61,7 @@ export default function MedicalDisclaimerPage() {
         {
           heading: 'Prototype status',
           paragraphs: [
-            'This deployment is an academic prototype. The payment gateway is a demonstration, insurance verification is simulated, and the insurers shown are placeholder data. Nothing here should be treated as a live clinical service.',
+            'This deployment is an academic prototype. Subscription and insurance verification are demonstrations, and the insurers shown are placeholder data. Nothing here should be treated as a live clinical service.',
           ],
         },
       ]}

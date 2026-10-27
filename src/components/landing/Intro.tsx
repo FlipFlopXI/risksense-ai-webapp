@@ -4,9 +4,8 @@ import { useEffect, useState } from 'react';
 import { Mark } from '@/components/ui/Wordmark';
 
 /**
- * A short curtain on first arrival — once per tab, skippable by any input, and
- * skipped entirely under reduced motion. Luxury houses earn the pause; we borrow
- * about a second and a half of it.
+ * A short curtain on each homepage load, skipped under reduced motion.
+ * The count and curtain lift take about two and a half seconds together.
  */
 export function Intro() {
   const [phase, setPhase] = useState<'idle' | 'run' | 'lift' | 'gone'>('idle');
@@ -14,30 +13,18 @@ export function Intro() {
 
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let seen = false;
-    try {
-      seen = sessionStorage.getItem('rs-intro') === '1';
-    } catch {
-      seen = false;
-    }
-
-    if (reduced || seen) {
+    if (reduced) {
       setPhase('gone');
       return;
-    }
-
-    try {
-      sessionStorage.setItem('rs-intro', '1');
-    } catch {
-      /* private mode — show the intro, just do not remember it */
     }
 
     setPhase('run');
     document.body.style.overflow = 'hidden';
 
     const start = performance.now();
-    const DURATION = 850;
+    const DURATION = 2000;
     let raf = 0;
+    let liftTimer = 0;
 
     const tick = (now: number) => {
       const t = Math.min(1, (now - start) / DURATION);
@@ -45,7 +32,7 @@ export function Intro() {
       if (t < 1) raf = requestAnimationFrame(tick);
       else {
         setPhase('lift');
-        window.setTimeout(() => {
+        liftTimer = window.setTimeout(() => {
           setPhase('gone');
           document.body.style.overflow = '';
         }, 640);
@@ -55,6 +42,7 @@ export function Intro() {
 
     return () => {
       cancelAnimationFrame(raf);
+      window.clearTimeout(liftTimer);
       document.body.style.overflow = '';
     };
   }, []);

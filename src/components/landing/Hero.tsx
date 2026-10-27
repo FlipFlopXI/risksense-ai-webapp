@@ -83,7 +83,7 @@ export function Hero() {
           >
             <Link
               href="/world"
-              className="group flex items-center justify-between gap-8 bg-brass px-6 py-4 micro whitespace-nowrap text-ink transition-colors duration-400 hover:bg-paper"
+              className="group flex items-center justify-between gap-3 bg-brass px-4 py-4 micro text-ink transition-colors duration-400 hover:bg-paper sm:gap-8 sm:px-6"
             >
               How RiskSense works
               <svg
@@ -104,7 +104,7 @@ export function Hero() {
 
             <Link
               href="/overview#analysis"
-              className="flex items-center justify-between gap-8 bg-ink px-6 py-4 micro whitespace-nowrap text-paper/80 transition-colors duration-400 hover:text-brass"
+              className="flex items-center justify-between gap-3 bg-ink px-4 py-4 micro text-paper/80 transition-colors duration-400 hover:text-brass sm:gap-8 sm:px-6"
             >
               Risk analysis
               <span aria-hidden="true" className="text-paper/30">

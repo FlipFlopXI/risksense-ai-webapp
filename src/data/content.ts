@@ -96,6 +96,7 @@ export const NAV = [
   { label: 'Security', href: '/overview#security' },
   { label: 'FAQ', href: '/overview#faq' },
   { label: 'Contact', href: '/overview#contact' },
+  { label: 'Profile', href: '/profile' },
 ];
 
 /* -------------------------------------------------------------------------- */
@@ -113,7 +114,7 @@ export const NODES: InfoNode[] = [
     position: [-47, 0, -38.4],
     body: [
       'This district is the RiskSense AI service, laid out as a place you can walk through. Every building holds one part of the system: what it analyses, who reviews it, how access is granted, how the data is protected.',
-      'The website is the public information and service-activation layer. The mobile application remains the primary patient health application: health profile, vitals, laboratory information and risk-analysis history all live there.',
+      'The website is the public information and access-activation layer. The mobile application centres on heart disease and diabetes risk analysis, with health records, trends, and prediction history alongside supporting nutrition, fitness, and mindfulness tools.',
     ],
     bullets: [
       { label: 'Move', text: 'W A S D or arrow keys. Hold Shift to sprint' },
@@ -175,7 +176,7 @@ export const NODES: InfoNode[] = [
     accent: 'azure',
     position: [-33.6, 0, -22.5],
     body: [
-      'The patient records the health information the supported models require: demographics, vitals, and the relevant laboratory values.',
+      'After website activation, the patient returns to the mobile app for a six-step introduction and a validated health-profile form. The app asks for demographics and health information needed by its supported risk models; missing measurements are not invented.',
     ],
   },
   {

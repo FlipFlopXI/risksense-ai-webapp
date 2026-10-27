@@ -46,7 +46,7 @@ export function Nav() {
       >
         <nav
           aria-label="Primary"
-          className="mx-auto grid h-16 max-w-[1800px] grid-cols-[1fr_auto_1fr] items-center px-5 sm:h-[4.5rem] sm:px-8 lg:px-12"
+          className="mx-auto grid h-16 max-w-[1800px] grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 px-4 sm:h-[4.5rem] sm:grid-cols-[1fr_auto_1fr] sm:gap-0 sm:px-8 lg:px-12"
         >
           {/* Menu */}
           <button
@@ -74,22 +74,27 @@ export function Nav() {
           <Link
             href="/"
             aria-label="RiskSense AI — home"
-            className="flex items-center gap-2.5 justify-self-center text-paper transition-opacity hover:opacity-60"
+            className="flex min-w-0 items-center gap-1.5 justify-self-center text-paper transition-opacity hover:opacity-60 sm:gap-2.5"
           >
             <Mark className="h-4 w-4 text-brass" />
-            <span className="font-display text-[0.95rem] font-normal tracking-[0.34em] uppercase">
+            <span className="truncate font-display text-[0.75rem] font-normal tracking-[0.13em] uppercase sm:text-[0.95rem] sm:tracking-[0.34em]">
               RiskSense
             </span>
           </Link>
 
-          {/* Action */}
-          <Link
-            href="/register/complete"
-            className="justify-self-end border border-paper/25 px-4 py-2.5 micro text-paper transition-colors duration-400 hover:border-brass hover:bg-brass hover:text-ink sm:px-6"
-          >
-            <span className="hidden sm:inline">Complete Registration</span>
-            <span className="sm:hidden">Register</span>
-          </Link>
+          {/* Actions */}
+          <div className="flex items-center gap-2 justify-self-end sm:gap-3">
+            <Link
+              href="/register/complete"
+              className="border border-paper/25 px-2 py-2.5 micro text-paper transition-colors duration-400 hover:border-brass hover:bg-brass hover:text-ink sm:px-6"
+            >
+              <span className="hidden sm:inline">Sign In / Register</span>
+              <span className="sm:hidden">Sign In</span>
+            </Link>
+            <Link href="/profile" aria-label="Profile" title="Profile" className="grid h-10 w-10 place-items-center rounded-full border border-paper/25 text-paper transition-colors duration-400 hover:border-brass hover:bg-brass hover:text-ink">
+              <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5 fill-none stroke-current" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="3.5" /><path d="M4.5 20a7.5 7.5 0 0 1 15 0" /></svg>
+            </Link>
+          </div>
         </nav>
       </header>
 
@@ -138,7 +143,7 @@ export function Nav() {
               onClick={() => setOpen(false)}
               className="flex items-center justify-between bg-ink px-6 py-5 text-paper"
             >
-              <span className="micro">Complete registration</span>
+              <span className="micro">Sign in or register</span>
               <span className="micro-sm text-warn">Demo</span>
             </Link>
           </div>

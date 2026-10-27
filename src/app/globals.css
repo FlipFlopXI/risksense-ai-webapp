@@ -1,5 +1,28 @@
 @import 'tailwindcss';
 
+@keyframes activation-arrive {
+  from { opacity: 0; transform: translateY(20px) scale(.92); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes activation-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes activation-glow {
+  50% { opacity: .55; transform: translateX(-50%) scale(1.3); }
+}
+
+.activation-seal { animation: activation-arrive .9s cubic-bezier(.2,.8,.2,1) both; }
+.activation-copy { animation: activation-arrive .8s cubic-bezier(.2,.8,.2,1) .35s both; }
+.activation-aura { animation: activation-glow 3s ease-in-out infinite; }
+.activation-check { stroke-dasharray: 90; stroke-dashoffset: 90; animation: activation-draw .8s ease-out .65s forwards; }
+
+@media (prefers-reduced-motion: reduce) {
+  .activation-seal, .activation-copy, .activation-aura, .activation-check { animation: none; }
+  .activation-check { stroke-dashoffset: 0; }
+}
+
 /* ==========================================================================
    RiskSense AI — design tokens
 
@@ -105,6 +128,15 @@ body {
   font-size: clamp(2.9rem, 11.5vw, 12rem);
   line-height: 0.88;
   letter-spacing: -0.028em;
+}
+
+@media (max-width: 639px) {
+  .display-xl {
+    font-size: clamp(2.15rem, 9.5vw, 3.75rem);
+    line-height: 0.99;
+  }
+  .display-l { font-size: clamp(2rem, 9vw, 3.3rem); }
+  .micro, .micro-sm { letter-spacing: 0.14em; line-height: 1.35; }
 }
 
 @utility display-l {

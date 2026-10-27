@@ -4,7 +4,7 @@ import { RegisterFlow } from '@/components/register/RegisterFlow';
 export const metadata: Metadata = {
   title: 'Complete your access setup',
   description:
-    'Sign in, select a demo subscription or simulated insurance route, verify a clinician, and submit a RiskSense access request.',
+    'Verify your account, activate access with a clinician, and return to the mobile app for onboarding.',
   robots: { index: false, follow: false },
 };
 

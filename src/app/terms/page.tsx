@@ -50,7 +50,7 @@ export default function TermsPage() {
         {
           heading: 'Payment and insurance',
           paragraphs: [
-            'When demonstration activation is enabled, FastAPI can activate a demo subscription or simulated insurance access after validating the patient and clinician. No real payment or external insurer verification occurs, and no card details are requested.',
+            'When demonstration activation is enabled, FastAPI can activate a demo subscription or simulated insurance access after validating the patient and clinician. No real payment or external insurer verification occurs. Subscription checkout accepts only published demonstration card details, which stay in the browser and are not sent to FastAPI.',
             'The insurers presented are demonstration data. Their appearance does not imply any commercial partnership, endorsement or coverage arrangement.',
           ],
         },

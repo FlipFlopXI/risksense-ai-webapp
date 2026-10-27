@@ -19,7 +19,7 @@ export default function PrivacyPage() {
           heading: 'The short version',
           list: [
             'Health data — vitals, laboratory values, risk analyses and prediction history — lives in the mobile application and the backend, not on this website.',
-            'The website does not request card numbers or CVV. No real payment is processed.',
+            'The subscription checkout accepts only the published demonstration card details. These entries are validated in the browser, are not sent to the backend, and no real payment is processed.',
             'Insurance member details are submitted to the backend and are not repeated on the review screen.',
             'The public pages do not require an account and do not ask for health information.',
           ],
@@ -34,7 +34,7 @@ export default function PrivacyPage() {
         {
           heading: 'Payment information',
           paragraphs: [
-            'In configured demo mode, FastAPI activates a demonstration subscription without a real transaction. This website does not request card details.',
+            'In configured demo mode, the website validates published demonstration card details locally before FastAPI activates a staged subscription. Do not enter a real card number or security code; no payment provider is connected and no real charge occurs.',
           ],
         },
         {

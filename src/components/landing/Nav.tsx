@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { NAV } from '@/data/content';
 import { Mark } from '@/components/ui/Wordmark';
+import { readActivationSession } from '@/api/activationSession';
 
 /**
  * Menu left, wordmark centred, one action right. Square, hairline-ruled, and
@@ -12,12 +13,26 @@ import { Mark } from '@/components/ui/Wordmark';
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [signedIn, setSignedIn] = useState<boolean | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    const updateSession = () => setSignedIn(readActivationSession() !== null);
+    updateSession();
+    window.addEventListener('risksense-session-change', updateSession);
+    window.addEventListener('focus', updateSession);
+    const interval = window.setInterval(updateSession, 60000);
+    return () => {
+      window.removeEventListener('risksense-session-change', updateSession);
+      window.removeEventListener('focus', updateSession);
+      window.clearInterval(interval);
+    };
   }, []);
 
   useEffect(() => {
@@ -84,13 +99,14 @@ export function Nav() {
 
           {/* Actions */}
           <div className="flex items-center gap-2 justify-self-end sm:gap-3">
-            <Link
+            {signedIn === false && <Link
               href="/register/complete"
               className="border border-paper/25 px-2 py-2.5 micro text-paper transition-colors duration-400 hover:border-brass hover:bg-brass hover:text-ink sm:px-6"
             >
               <span className="hidden sm:inline">Sign In / Register</span>
               <span className="sm:hidden">Sign In</span>
-            </Link>
+            </Link>}
+            {signedIn && <span role="status" className="micro text-brass">Signed In</span>}
             <Link href="/profile" aria-label="Profile" title="Profile" className="grid h-10 w-10 place-items-center rounded-full border border-paper/25 text-paper transition-colors duration-400 hover:border-brass hover:bg-brass hover:text-ink">
               <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5 fill-none stroke-current" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="3.5" /><path d="M4.5 20a7.5 7.5 0 0 1 15 0" /></svg>
             </Link>
@@ -139,11 +155,11 @@ export function Nav() {
               <span className="micro-sm opacity-60">3D · Interactive</span>
             </Link>
             <Link
-              href="/register/complete"
+              href={signedIn ? '/profile' : '/register/complete'}
               onClick={() => setOpen(false)}
               className="flex items-center justify-between bg-ink px-6 py-5 text-paper"
             >
-              <span className="micro">Sign in or register</span>
+              <span className="micro">{signedIn ? 'Your profile' : 'Sign in or register'}</span>
               <span className="micro-sm text-warn">Demo</span>
             </Link>
           </div>

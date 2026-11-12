@@ -59,7 +59,7 @@ export function Insurance() {
               <span className="editorial text-brass">RiskSense</span>.
             </>
           }
-          lede="These provider names illustrate the simulated insurance route. They are examples only; enter your provider name in the access request."
+          lede="These provider names illustrate the simulated insurance route. They are examples only; select an enabled provider during the access workflow."
         />
 
         {/* Prototype honesty banner — §6 */}
